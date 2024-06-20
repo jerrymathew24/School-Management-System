@@ -1,14 +1,12 @@
-
+<!-- app/views/home/index.html.erb -->
 <div class="container mt-4">
   <h1>Welcome to School Management System</h1>
   <hr>
 
   <% if student_signed_in? %>
     <div class="mt-4">
-      <h3>Student Details</h3>
-      <p><strong>Name:</strong> <%= current_student.name %></p>
+      <p><strong>Hello</strong> <%= current_student.name %></p>
       <p><strong>Contact:</strong> <%= current_student.contact %></p>
-      <p><strong>Role:</strong> <%= current_student.role %></p>
       <p><strong>Grade:</strong> <%= current_student.grade %></p>
       <p><strong>Email:</strong> <%= current_student.email %></p>
 
@@ -16,29 +14,26 @@
     </div>
   <% elsif teacher_signed_in? %>
     <div class="mt-4">
-      <h3>Teacher Details</h3>
-      <p><strong>Name:</strong> <%= current_teacher.name %></p>
+      <p><strong>Hello</strong> <%= current_teacher.name %></p>
       <p><strong>Contact:</strong> <%= current_teacher.contact %></p>
-      <p><strong>Role:</strong> <%= current_teacher.department %></p>
       <p><strong>Department:</strong> <%= current_teacher.department %></p>
       <p><strong>Email:</strong> <%= current_teacher.email %></p>
-
-      <!-- Example for displaying list of students -->
-<div class="container mt-4">
-  <h1>Students List</h1>
-
-  <% @students.each do |student| %>
-    <div class="student">
-      <p><strong>Name:</strong> <%= student.name %></p>
-      <p><strong>Contact:</strong> <%= student.contact %></p>
-      <p><strong>Grade:</strong> <%= student.grade %></p>
-      <hr>
-    </div>
-  <% end %>
-</div>
-
-
       <%= button_to "Logout", destroy_teacher_session_path, method: :delete, class: "btn btn-danger mt-2" %>
+
+      <!-- Displaying list of students with links -->
+      <div class="container mt-4">
+        <h1>Students List</h1>
+
+        <% @students.each do |student| %>
+          <div class="student">
+            <p><strong>Name:</strong> <%= link_to student.name, student_path(student) %></p>
+            
+            <hr>
+          </div>
+        <% end %>
+      </div>
+
+      
     </div>
   <% else %>
     <div class="mt-4">

@@ -1,0 +1,11 @@
+<div class="container mt-4">
+  <h1>Students List</h1>
+  <% @students.each do |student| %>
+    <div class="student">
+      <p><strong>Name:</strong> <%= link_to student.name, student_path(student) %></p>
+      <p><strong>Contact:</strong> <%= student.contact %></p>
+      <p><strong>Grade:</strong> <%= student.grade %></p>
+      <hr>
+    </div>
+  <% end %>
+</div>
